@@ -14,15 +14,15 @@ class MainActivity : AppCompatActivity() {
         val databaseUser=baseContext.openOrCreateDatabase("user_info", MODE_PRIVATE,null)
         val mCursor:Cursor=databaseUser.rawQuery("SELECT * FROM user" , null);
         if(!mCursor.moveToFirst()) {
-
-            Log.d(TAG, "The database is empty")
+            val sqlcreatingtable1="CREATE TABLE user(_id INTEGER PRIMARY KEY NOT NULL, name TEXT,age INT,sex TEXT,weight INT,height INT)"
+            databaseUser?.execSQL(sqlcreatingtable1)
+            Log.d(TAG, "The database exist but it's empty")
         }
         else
         {
-
+            //TODO:Adding if user already install app
         }
-        val sqlCreatingTable_1="CREATE TABLE user(_id INTEGER PRIMARY KEY NOT NULL, name TEXT,age INT,sex TEXT,weight INT,height INT)"
-        //databaseUser.execSQL(sqlCreatingTable_1)
+
         Log.d(TAG,"creating database $databaseUser")
     }
 }
