@@ -58,54 +58,44 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewWeight" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
         app:layout_constraintBaseline_toBaselineOf="@+id/textViewName"
         app:layout_constraintStart_toEndOf="@+id/textViewName" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned"
+        android:id="@+id/editTextAge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberSigned"
         app:layout_constraintBaseline_toBaselineOf="@+id/textViewAge"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextName" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="numberSigned"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textViewSex"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned" />
-
-    <EditText
-        android:id="@+id/editTextNumberSigned3"
+        android:id="@+id/editTextNumberWeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberSigned"
         app:layout_constraintBaseline_toBaselineOf="@+id/textViewWeight"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned2" />
+        app:layout_constraintEnd_toEndOf="@+id/checkBoxFemale" />
 
     <EditText
-        android:id="@+id/editTextNumberSigned4"
+        android:id="@+id/editTextNumberHeight"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberSigned"
         app:layout_constraintBaseline_toBaselineOf="@+id/textViewHeight"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNumberSigned3" />
+        app:layout_constraintEnd_toEndOf="@+id/editTextNumberWeight" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -116,5 +106,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBoxMale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="Man"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewSex"
+        app:layout_constraintEnd_toStartOf="@+id/checkBoxFemale" />
+
+    <CheckBox
+        android:id="@+id/checkBoxFemale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Women"
+        app:layout_constraintBaseline_toBaselineOf="@+id/checkBoxMale"
+        app:layout_constraintEnd_toEndOf="@+id/editTextAge" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
