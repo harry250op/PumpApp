@@ -25,6 +25,7 @@ class RegistrationActivity: AppCompatActivity()  {
         val button:Button=findViewById<Button>(R.id.button1)
         val checkBoxMen=findViewById<CheckBox>(R.id.checkBoxMale)
         var checkBoxWomen=findViewById<CheckBox>(R.id.checkBoxFemale)
+        Log.d(TAG,"OnCreate")
 
 
 
@@ -39,22 +40,26 @@ class RegistrationActivity: AppCompatActivity()  {
             {
                 sex="man"
             }else sex="woman"
+            var tesk=editName?.text.toString()
 
 
             user.put("name", editName?.text.toString())
-            user.put("age", editAge?.text.toString())
+            user.put("age", (editAge?.text.toString()).toInt())
             user.put("sex",sex)
-            user.put("weight", editWeight?.text.toString())
+            user.put("weight", (editWeight?.text.toString()).toInt())
+            user.put("height", (editHeight?.text.toString()).toInt())
             databaseUser.insert(
                 "user",
                 null,
                 user
             )
+            databaseUser.close()
+
 
             Log.d(TAG, "The data has been added to database")
-            val test="SELECT * from user "
-            databaseUser.execSQL(test)
+            val text="IT WORKS"
             val data= Intent()
+            data.data = Uri.parse(text.toString())
             setResult(RESULT_OK,data)
             finish()
 
