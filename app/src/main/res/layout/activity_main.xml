@@ -42,15 +42,17 @@
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent" />
 
-
-    <ListView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_recycle_view"
+        android:layout_width="409dp"
+        android:layout_height="552dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHello" >
+        app:layout_constraintTop_toBottomOf="@+id/textViewHello" />
 
-    </ListView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
