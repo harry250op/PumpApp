@@ -1,13 +1,17 @@
 package com.example.pumpapp
 
-import android.content.Context
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
-import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.TextView
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
+
+
+
 
 class TrainingData{
     var name: String = ""
@@ -18,11 +22,17 @@ class TrainingData{
 
 
 
-class TrainigAdapter( private val dataSet:ArrayList<TrainingData>): RecyclerView.Adapter<TrainigAdapter.ViewHolder>()
+class TrainigAdapter(private val dataSet:ArrayList<TrainingData>): RecyclerView.Adapter<TrainigAdapter.ViewHolder>()
 {
+    var TAG="trainingAdapter"
+
 
     class ViewHolder(v:View):RecyclerView.ViewHolder(v) {
         val nameExcercise: TextView = v.findViewById<TextView>(R.id.nameTraining)
+        val button:Button=v.findViewById(R.id.start_training)
+        var context=v.getContext()
+
+
 
 
     }
@@ -39,12 +49,23 @@ class TrainigAdapter( private val dataSet:ArrayList<TrainingData>): RecyclerView
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        var holer:TrainingData=dataSet[position]
-        viewHolder.nameExcercise.text = holer.name
+        val dataFromDatabase:TrainingData=dataSet[position]
+        viewHolder.nameExcercise.text = dataFromDatabase.name
+        viewHolder.button.setOnClickListener()
+        {
+            Log.d(TAG,"The button has been clicked with ${dataFromDatabase.name}")
+            val intent= Intent(viewHolder.context,Training::class.java)
+            viewHolder.context.startActivity(intent)
+        }
+
+
     }
 
 
     override fun getItemCount(): Int {
         return dataSet.size
     }
+
+
+
 }

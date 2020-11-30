@@ -1,7 +1,6 @@
 package com.example.pumpapp
 
 import android.annotation.SuppressLint
-import android.content.ContentProvider
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -9,18 +8,13 @@ import android.database.Cursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ListView
 import android.widget.TextView
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
-import com.google.android.gms.ads.InterstitialAd
 import com.google.android.gms.ads.MobileAds
-import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
     private val TAG="mainActivity"
@@ -74,9 +68,8 @@ class MainActivity : AppCompatActivity() {
         textViewName.text = "Hello $userName"
 
         recycle_view.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        recycle_view.apply {
-             adapter=TrainigAdapter(training_database_getting())
-        }
+        recycle_view.adapter=TrainigAdapter(training_database_getting())
+
 
 
 
@@ -97,7 +90,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun excercise_database_creating()
+    private fun excercise_database_creating()
     {
         Log.d(TAG,"Creating database for excercises")
         val databaseExcercise=baseContext.openOrCreateDatabase("exce", Context.MODE_PRIVATE,null)
@@ -147,7 +140,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun training_database_getting():ArrayList<TrainingData>
+    private fun training_database_getting():ArrayList<TrainingData>
     {
         val databaseTraining=baseContext.openOrCreateDatabase("training", Context.MODE_PRIVATE,null)
         val cursor:Cursor=databaseTraining.rawQuery("SELECT * from exce ",null)
