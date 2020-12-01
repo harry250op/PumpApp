@@ -55,6 +55,8 @@ class TrainigAdapter(private val dataSet:ArrayList<TrainingData>): RecyclerView.
         {
             Log.d(TAG,"The button has been clicked with ${dataFromDatabase.name}")
             val intent= Intent(viewHolder.context,Training::class.java)
+            TODO("Changing type of $dataFromDatabase")
+           // intent.putExtra("training",dataFromDatabase)
             viewHolder.context.startActivity(intent)
         }
 
