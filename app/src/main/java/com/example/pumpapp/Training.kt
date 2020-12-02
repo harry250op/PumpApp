@@ -2,12 +2,15 @@ package com.example.pumpapp
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.database.Cursor
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.training_holder.*
 
 
 class Training: AppCompatActivity() {
@@ -15,6 +18,7 @@ class Training: AppCompatActivity() {
     var reps=0
     var time=0
     var weight=0.0
+    var name_of_excercise=""
     lateinit var textViewName:TextView
     lateinit var textViewReps:TextView
     lateinit var textViewWeight:TextView
@@ -25,6 +29,7 @@ class Training: AppCompatActivity() {
     lateinit var buttonSubtracionWeight:Button
     lateinit var buttonSubtracionReps:Button
     lateinit var buttonNext:Button
+    lateinit var buttonYoutube:Button
 
 
     val Tag="training"
@@ -50,6 +55,7 @@ class Training: AppCompatActivity() {
         buttonSubtracionReps=findViewById(R.id.deleting_reps)
         buttonSubtracionWeight=findViewById(R.id.deleting_weight)
         buttonNext=findViewById(R.id.next_excercise)
+        buttonYoutube=findViewById(R.id.go_to_Youtube)
 
         update()
 
@@ -76,6 +82,11 @@ class Training: AppCompatActivity() {
         buttonNext.setOnClickListener{
             update()
         }
+        buttonYoutube.setOnClickListener{
+           var intent=Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/results?search_query=$name_of_excercise+how+to+do"))
+            startActivity(intent)
+        }
+
 
     }
 
@@ -92,7 +103,8 @@ class Training: AppCompatActivity() {
     fun update()
     {
         var data: Array<String> =training[iterator_training].split("|").toTypedArray()
-        textViewName.text=getting_name_of_excercise(data[0])
+        name_of_excercise=getting_name_of_excercise(data[0])
+        textViewName.text=name_of_excercise
         reps=data[1].toInt()
         textViewReps.text= "${reps.toString()} Reps"
         time=data[2].toInt()
