@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
             if(it.moveToFirst())
             {
                 with(cursor) {
-                    var training=TrainingData()
+                    val training=TrainingData()
                     training.name= getString(1)
                     training.exce_1= getString(2)
                     training.exce_2= getString(3)
