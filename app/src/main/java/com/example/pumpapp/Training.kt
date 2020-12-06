@@ -213,6 +213,8 @@ class Training : AppCompatActivity() {
 
     }
 
+
+
 }
 
 

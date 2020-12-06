@@ -18,6 +18,7 @@ import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private val TAG="mainActivity"
+    var userName:String=""
     @SuppressLint("Recycle", "SetTextI18n", "WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val recycle_view=findViewById<RecyclerView>(R.id.list_recycle_view)
         val adsView=findViewById<AdView>(R.id.adView)
        val textViewName=findViewById<TextView>(R.id.textViewHello)
-        var userName=""
+
 
 
 
@@ -108,6 +109,7 @@ class MainActivity : AppCompatActivity() {
             null,
             user
         )
+
         user.clear()
 
         user.put("name","Lunges" )
@@ -136,6 +138,140 @@ class MainActivity : AppCompatActivity() {
             null,
             user
         )
+        user.clear()
+            user.put("name","Crunch" )
+        user.put("type", "Abs")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Sit-Up with cable" )
+        user.put("type", "Abs")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","High Leg Pull-In" )
+        user.put("type", "Abs")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.put("name","Pull-up" )
+        user.put("type", "Back")
+        user.clear()
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.put("name","Inverted Rows" )
+        user.put("type", "Back")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Chin-Ups" )
+        user.put("type", "Back")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Chest Press" )
+        user.put("type", "Chest")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Pullover" )
+        user.put("type", "Chest")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Push-Ups" )
+        user.put("type", "Chest")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Arnold Press" )
+        user.put("type", "Shoulder")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Overhead Machine Press" )
+        user.put("type", "Shoulder")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Cable Curls" )
+        user.put("type", "Biceps")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Seated Dumbbell Curls" )
+        user.put("type", "Biceps")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Dips" )
+        user.put("type", "Triceps")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
+        user.put("name","Skull Crushers" )
+        user.put("type", "Triceps")
+
+        databaseExcercise.insert(
+            "exce",
+            null,
+            user
+        )
+        user.clear()
         databaseExcercise.close()
         Log.d(TAG,"The database for excercise has been created")
 
