@@ -58,8 +58,8 @@ class RegistrationActivity: AppCompatActivity()  {
 
             Log.d(TAG, "The data has been added to database")
             val text="IT WORKS"
-            val data= Intent()
-            data.data = Uri.parse(text.toString())
+            val data=Intent()
+            data.data=Uri.parse(editName?.text.toString())
             setResult(RESULT_OK,data)
             finish()
 

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import kotlinx.android.synthetic.main.activity_getting_data_user.*
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -84,6 +85,8 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == 1) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 Log.d(TAG,"The user has sent the data")
+                val returnedResult = data?.dataString
+                textViewName.text=returnedResult.toString()
 
 
 
