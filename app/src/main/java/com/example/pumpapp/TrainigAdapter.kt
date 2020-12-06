@@ -56,14 +56,27 @@ class TrainigAdapter(private val dataSet:ArrayList<TrainingData>): RecyclerView.
             Log.d(TAG,"The button has been clicked with ${dataFromDatabase.name}")
             var dataInString:String
 
+            if(dataSet[position].exce_2=="")
+            {
+                dataInString=dataSet[position].exce_1
+            }
+            else if(dataSet[position].exce_3=="")
+            {
+                dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2
+            }
+            else
+            {
+                dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3
+            }
 
-            dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3
+
 
 
             val intent= Intent(viewHolder.context,Training::class.java)
             intent.putExtra("training",dataInString)
-            Log.d(TAG,"$dataInString")
+            Log.d(TAG, dataInString)
             viewHolder.context.startActivity(intent)
+
         }
 
 
