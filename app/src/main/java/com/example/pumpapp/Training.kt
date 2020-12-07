@@ -25,7 +25,7 @@ class Training : AppCompatActivity() {
     lateinit var textViewReps: TextView
     lateinit var textViewWeight: TextView
     lateinit var training: Array<String>
-
+    lateinit var stoper: Stoper
     lateinit var textViewTraining: TextView
     lateinit var buttonAddingWeight: Button
     lateinit var buttonAddingReps: Button
@@ -106,6 +106,7 @@ class Training : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     fun start() {
+
         val data: Array<String> = training[iterator_exce].split("|").toTypedArray()
         name_of_excercise = getting_name_of_excercise(data[0])
         textViewName.text = name_of_excercise
@@ -113,7 +114,7 @@ class Training : AppCompatActivity() {
         textViewReps.text = "$iterator_reps /${reps.toString()} Reps"
         time = data[2].toInt()
         textViewWeight.text = "${weight.toString()} Kg"
-        val stoper = Stoper((time * 1000).toLong(), 1, textViewTraining)
+        stoper=Stoper((time * 1000).toLong(), 1, textViewTraining)
         stoper.start()
         iterator_reps++
         iterator_exce = 0
@@ -133,7 +134,7 @@ class Training : AppCompatActivity() {
             }
             else {
 
-
+                stoper.cancel()
                 val data: Array<String> = training[iterator_exce].split("|").toTypedArray()
                 name_of_excercise = getting_name_of_excercise(data[0])
                 textViewName.text = name_of_excercise
@@ -144,15 +145,18 @@ class Training : AppCompatActivity() {
                 textViewReps.text = "$iterator_reps /${reps.toString()} Reps"
                 time = data[2].toInt()
                 textViewWeight.text = "${weight.toString()} Kg"
-                val stoper = Stoper((time * 1000).toLong(), 1, textViewTraining)
+                stoper = Stoper((time * 1000).toLong(), 1, textViewTraining)
                 stoper.start()
             }
 
 
         } else {
             //when rep was done
+            stoper.cancel()
             iterator_reps++
             textViewReps.text = "$iterator_reps /${reps.toString()} Reps"
+            stoper = Stoper((time * 1000).toLong(), 1, textViewTraining)
+            stoper.start()
 
         }
 
