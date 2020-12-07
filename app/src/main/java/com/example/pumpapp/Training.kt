@@ -199,7 +199,7 @@ class Training : AppCompatActivity() {
 
     }
 
-    @SuppressLint("ResourceType")
+    @SuppressLint("ResourceType", "SetTextI18n")
     fun window_alert()
     {
         val time_ending = System.currentTimeMillis()
@@ -213,6 +213,7 @@ class Training : AppCompatActivity() {
         val button_to_menu=dialog.findViewById<Button>(R.id.Button_return_to_menu)
         weight_wourkout.text="${full_weight.toString()} kg"
         time_wourkout.text= changing_time(time_ending-time_begin)
+        calories_wourkout.text="${((time_ending-time_begin)/7500)} kcal"
 
         button_to_menu.setOnClickListener{
             setResult(RESULT_OK)
@@ -226,7 +227,7 @@ class Training : AppCompatActivity() {
 
     }
     fun changing_time(time:Long): String {
-        var minutes=time/6000
+        var minutes=time/60000
         var seconds=(time/1000)%60
         return "${minutes.toString()} min : ${seconds.toString()} sec"
     }
