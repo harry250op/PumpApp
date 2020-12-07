@@ -26,6 +26,8 @@ class Training : AppCompatActivity() {
     lateinit var textViewWeight: TextView
     lateinit var training: Array<String>
     lateinit var stoper: Stoper
+    var time_begin:Long=0
+    var full_weight= 0.0
     lateinit var textViewTraining: TextView
     lateinit var buttonAddingWeight: Button
     lateinit var buttonAddingReps: Button
@@ -106,7 +108,7 @@ class Training : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     fun start() {
-
+        time_begin = System.currentTimeMillis()
         val data: Array<String> = training[iterator_exce].split("|").toTypedArray()
         name_of_excercise = getting_name_of_excercise(data[0])
         textViewName.text = name_of_excercise
@@ -130,11 +132,14 @@ class Training : AppCompatActivity() {
             iterator_exce++
             if (training.size <= iterator_exce) {
                 //when all exce was done
+                full_weight+=weight
                 window_alert()
             }
             else {
 
                 stoper.cancel()
+                full_weight+=weight
+
                 val data: Array<String> = training[iterator_exce].split("|").toTypedArray()
                 name_of_excercise = getting_name_of_excercise(data[0])
                 textViewName.text = name_of_excercise
@@ -152,6 +157,7 @@ class Training : AppCompatActivity() {
 
         } else {
             //when rep was done
+            full_weight+=weight
             stoper.cancel()
             iterator_reps++
             textViewReps.text = "$iterator_reps /${reps.toString()} Reps"
@@ -163,14 +169,14 @@ class Training : AppCompatActivity() {
 
     }
 
-    @SuppressLint("SetTextI18n")
+/*    @SuppressLint("SetTextI18n")
     fun next_exce() {
 
         textViewWeight.text = "${time.toString()} Sec"
         textViewReps.text = "${reps.toString()} Reps"
         val stoper = Stoper((time * 1000).toLong(), 1, textViewTraining)
         stoper.start()
-    }
+    }*/
 
     fun getting_name_of_excercise(id: String): String {
         var name_exce: String = ""
@@ -196,6 +202,7 @@ class Training : AppCompatActivity() {
     @SuppressLint("ResourceType")
     fun window_alert()
     {
+        val time_ending = System.currentTimeMillis()
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
@@ -204,6 +211,8 @@ class Training : AppCompatActivity() {
         val weight_wourkout=dialog.findViewById<TextView>(R.id.TextViewWeightWorkout)
         val calories_wourkout=dialog.findViewById<TextView>(R.id.TextViewCaloriesWorkout)
         val button_to_menu=dialog.findViewById<Button>(R.id.Button_return_to_menu)
+        weight_wourkout.text="${full_weight.toString()} kg"
+        time_wourkout.text= changing_time(time_ending-time_begin)
 
         button_to_menu.setOnClickListener{
             setResult(RESULT_OK)
@@ -215,6 +224,11 @@ class Training : AppCompatActivity() {
 
 
 
+    }
+    fun changing_time(time:Long): String {
+        var minutes=time/6000
+        var seconds=(time/1000)%60
+        return "${minutes.toString()} min : ${seconds.toString()} sec"
     }
 
 
