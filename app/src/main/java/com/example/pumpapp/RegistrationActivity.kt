@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 
     private const val TAG="registrationActivity"
@@ -59,7 +60,10 @@ class RegistrationActivity: AppCompatActivity()  {
             Log.d(TAG, "The data has been added to database")
             val text="IT WORKS"
             val data=Intent()
-            data.data=Uri.parse(editName?.text.toString())
+            if (editName != null) {
+                data.data=Uri.parse(editName.text.toString())
+            }
+            Log.d(TAG,"The result is $data")
             setResult(RESULT_OK,data)
             finish()
 

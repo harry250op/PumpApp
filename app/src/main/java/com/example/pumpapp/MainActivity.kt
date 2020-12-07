@@ -20,13 +20,14 @@ import java.lang.Exception
 class MainActivity : AppCompatActivity() {
     private val TAG="mainActivity"
     var userName:String=""
+    lateinit var textViewName: TextView
     @SuppressLint("Recycle", "SetTextI18n", "WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val recycle_view=findViewById<RecyclerView>(R.id.list_recycle_view)
         val adsView=findViewById<AdView>(R.id.adView)
-       val textViewName=findViewById<TextView>(R.id.textViewHello)
+        textViewName=findViewById<TextView>(R.id.textViewHello)
 
 
 
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
             //database dont exist
             excercise_database_creating()
             training_database_creating()
+            excercies_done_database_creating()
             val sqlcreatingtable1="CREATE TABLE user(_id INTEGER PRIMARY KEY NOT NULL, name TEXT,age INTEGER,sex TEXT,weight INTEGER,height INTEGER)"
             databaseUser?.execSQL(sqlcreatingtable1)
                 Log.d(TAG, "The database exist but it's empty")
@@ -80,13 +82,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 Log.d(TAG,"The user has sent the data")
                 val returnedResult = data?.dataString
-                textViewName.text=returnedResult.toString()
+                textViewName.text="Hello $returnedResult"
 
 
 
@@ -327,6 +330,13 @@ class MainActivity : AppCompatActivity() {
         )
         databaseTraining.close()
         Log.d(TAG,"The database for training has been created")
+    }
+    fun excercies_done_database_creating()
+    {
+        Log.d(TAG,"Creating database for done excercises")
+        val databaseExcerciseDone=baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE,null)
+        val sqlcreatingtable1="CREATE TABLE exce(_id INTEGER PRIMARY KEY NOT NULL, id_exce INTEGER,weight INTEGER)"
+        databaseExcerciseDone?.execSQL(sqlcreatingtable1)
     }
 
 
