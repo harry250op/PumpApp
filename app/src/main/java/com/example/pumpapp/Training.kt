@@ -2,9 +2,11 @@ package com.example.pumpapp
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +14,8 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.room.Database
+import com.google.gson.internal.bind.SqlDateTypeAdapter
 
 
 class Training : AppCompatActivity() {
@@ -35,6 +39,7 @@ class Training : AppCompatActivity() {
     lateinit var buttonSubtracionReps: Button
     lateinit var buttonNext: Button
     lateinit var buttonYoutube: Button
+    lateinit var databaseExce:SQLiteDatabase
 
 
     val Tag = "training"
@@ -54,7 +59,7 @@ class Training : AppCompatActivity() {
 
 
         Log.d(Tag, "Dataset has been recieved $training")
-        Log.d(Tag, "Dataset has been recieved ${training.size}")
+        databaseExce=baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE,null)
 
         textViewName = findViewById(R.id.NameofExcercise)
         textViewReps = findViewById(R.id.Rep)
@@ -125,7 +130,18 @@ class Training : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     fun update() {
+        val user = ContentValues()
+        val data: Array<String> = training[iterator_exce].split("|").toTypedArray()
+        user.put("id_exce",data[0].toInt() )
+        user.put("weight", weight.toString())
+        user.put("time",System.currentTimeMillis().toString())
 
+        databaseExce.insert(
+            "exce_done",
+            null,
+            user
+        )
+        user.clear()
 
         if (iterator_reps >= reps || iterator_reps == 0) {
             //when the all reps of excer was done
@@ -216,6 +232,7 @@ class Training : AppCompatActivity() {
         calories_wourkout.text="${((time_ending-time_begin)/7500)} kcal"
 
         button_to_menu.setOnClickListener{
+            databaseExce.close()
             setResult(RESULT_OK)
             finish()
 

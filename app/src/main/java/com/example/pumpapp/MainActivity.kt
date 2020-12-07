@@ -335,7 +335,7 @@ class MainActivity : AppCompatActivity() {
     {
         Log.d(TAG,"Creating database for done excercises")
         val databaseExcerciseDone=baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE,null)
-        val sqlcreatingtable1="CREATE TABLE exce(_id INTEGER PRIMARY KEY NOT NULL, id_exce INTEGER,weight INTEGER)"
+        val sqlcreatingtable1="CREATE TABLE exce_done(_id INTEGER PRIMARY KEY NOT NULL, id_exce INTEGER,weight TEXT,time TEXT)"
         databaseExcerciseDone?.execSQL(sqlcreatingtable1)
     }
 
