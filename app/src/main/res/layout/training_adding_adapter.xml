@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/buttonAddingTime"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="+"
+        android:textSize="10sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewTime"
+        app:layout_constraintStart_toEndOf="@+id/textViewTime" />
+
+    <Button
+        android:id="@+id/buttonDeletingTime"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/rounded_button"
+        android:text="-"
+        android:textSize="10sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonAddingTime"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddingTime" />
+
+    <TextView
+        android:id="@+id/textViewNameOfExcercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:text="TextView"
+        android:textSize="20sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewNameOfExcercise"
+        app:layout_constraintStart_toEndOf="@+id/textViewNameOfExcercise" />
+
+    <TextView
+        android:id="@+id/textViewReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Reps"
+        app:layout_constraintStart_toStartOf="@+id/textViewNameOfExcercise"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameOfExcercise" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="16dp"
+        android:text="Time"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddingReps2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameOfExcercise" />
+
+    <Button
+        android:id="@+id/buttonAddingReps"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="+"
+        android:textSize="10sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewReps"
+        app:layout_constraintStart_toEndOf="@+id/textViewReps" />
+
+    <Button
+        android:id="@+id/buttonAddingReps2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/rounded_button"
+        android:text="-"
+        android:textSize="10sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonAddingReps"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddingReps" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Add Excercise"
+        app:layout_constraintStart_toStartOf="@+id/textViewReps"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReps" />
+</androidx.constraintlayout.widget.ConstraintLayout>
