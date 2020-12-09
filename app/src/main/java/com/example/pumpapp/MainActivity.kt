@@ -8,6 +8,7 @@ import android.database.Cursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private val TAG="mainActivity"
     var userName:String=""
     lateinit var textViewName: TextView
+    lateinit var buttonAddTraining: Button
     @SuppressLint("Recycle", "SetTextI18n", "WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         val recycle_view=findViewById<RecyclerView>(R.id.list_recycle_view)
         val adsView=findViewById<AdView>(R.id.adView)
         textViewName=findViewById<TextView>(R.id.textViewHello)
+        buttonAddTraining=findViewById(R.id.Button_adding)
 
 
 
@@ -76,7 +79,12 @@ class MainActivity : AppCompatActivity() {
 
 
 
+        buttonAddTraining.setOnClickListener {
+            val intent=Intent(this,Training_creating::class.java)
+            startActivityForResult(intent,2)
 
+
+        }
 
 
         }

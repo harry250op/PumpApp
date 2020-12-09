@@ -1,0 +1,14 @@
+package com.example.pumpapp
+
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+
+class Training_creating : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.training_adding)
+
+
+    }
+}
