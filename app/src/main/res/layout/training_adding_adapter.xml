@@ -43,7 +43,7 @@
         android:id="@+id/textViewType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
+        android:layout_marginStart="32dp"
         android:text="TextView"
         android:textSize="20sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textViewNameOfExcercise"
@@ -53,7 +53,7 @@
         android:id="@+id/textViewReps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:text="Reps"
         app:layout_constraintStart_toStartOf="@+id/textViewNameOfExcercise"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameOfExcercise" />
@@ -94,8 +94,8 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
         android:text="Add Excercise"
-        app:layout_constraintStart_toStartOf="@+id/textViewReps"
-        app:layout_constraintTop_toBottomOf="@+id/textViewReps" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewNameOfExcercise"
+        app:layout_constraintStart_toEndOf="@+id/textViewType" />
 </androidx.constraintlayout.widget.ConstraintLayout>

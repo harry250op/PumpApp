@@ -297,13 +297,12 @@ class MainActivity : AppCompatActivity() {
         val cursor:Cursor=databaseTraining.rawQuery("SELECT * from exce ",null)
         var dataSet=ArrayList<TrainingData>()
         cursor.use {
-            if(it.moveToFirst())
-            {
+            if (it.moveToFirst()) {
                 with(cursor) {
-                    val training=TrainingData()
-                    training.name= getString(1)
-                    training.exce_1= getString(2)
-                    training.exce_2= getString(3)
+                    val training = TrainingData()
+                    training.name = getString(1)
+                    training.exce_1 = getString(2)
+                    training.exce_2 = getString(3)
 
                     Log.d(TAG, "The data has been download  with${training.name}")
                     dataSet.add(training)
