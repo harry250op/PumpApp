@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <Button
         android:id="@+id/buttonAddingTime"
@@ -54,7 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Reps"
+        android:text="Reps:0"
         app:layout_constraintStart_toStartOf="@+id/textViewNameOfExcercise"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameOfExcercise" />
 
@@ -64,8 +63,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
         android:layout_marginTop="16dp"
-        android:text="Time"
-        app:layout_constraintStart_toEndOf="@+id/buttonAddingReps2"
+        android:text="Time:0"
+        app:layout_constraintStart_toEndOf="@+id/buttonDeletingReps"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameOfExcercise" />
 
     <Button
@@ -80,7 +79,7 @@
         app:layout_constraintStart_toEndOf="@+id/textViewReps" />
 
     <Button
-        android:id="@+id/buttonAddingReps2"
+        android:id="@+id/buttonDeletingReps"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="8dp"
@@ -91,11 +90,13 @@
         app:layout_constraintStart_toEndOf="@+id/buttonAddingReps" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/ButtonAddingExcercise"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="Add Excercise"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textViewNameOfExcercise"
-        app:layout_constraintStart_toEndOf="@+id/textViewType" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/textViewNameOfExcercise"
+        app:layout_constraintTop_toBottomOf="@+id/textViewReps" />
 </androidx.constraintlayout.widget.ConstraintLayout>
