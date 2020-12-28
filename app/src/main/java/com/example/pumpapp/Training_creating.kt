@@ -25,6 +25,7 @@ class Excercise()
 
 class Training_creating : AppCompatActivity() {
     val TAG="trainign_creating"
+    var listOfExce=ArrayList<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.training_adding)
@@ -45,6 +46,9 @@ class Training_creating : AppCompatActivity() {
 
             val row: String? = intent?.getStringExtra("exce")
             Log.d(TAG,"The data has been receive $row")
+            if (row != null) {
+                listOfExce.add(row)
+            }
         }
     }
 

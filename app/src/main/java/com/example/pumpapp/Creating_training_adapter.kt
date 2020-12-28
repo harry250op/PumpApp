@@ -2,6 +2,7 @@ package com.example.pumpapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -68,6 +69,12 @@ class Creating_training_adapter(val dataSet: ArrayList<Excercise>) : RecyclerVie
         }
         holder.addExcercise.setOnClickListener()
         {
+            holder.plusTime.isClickable = false
+            holder.minusTime.isClickable = false
+            holder.plusReps.isClickable = false
+            holder.minusReps.isClickable = false
+            holder.addExcercise.isClickable=false
+                holder.addExcercise.setBackgroundColor(Color.GREEN)
         val intent=Intent("custom-message")
         intent.putExtra("exce","${dataFromDatabase.id}|$reps|$time")
            Log.d(TAG,"dog")
