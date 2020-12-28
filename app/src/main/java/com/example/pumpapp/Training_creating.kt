@@ -1,12 +1,19 @@
 package com.example.pumpapp
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class Excercise()
 {
@@ -17,15 +24,28 @@ class Excercise()
 
 
 class Training_creating : AppCompatActivity() {
-    val TAG="Trainign_creating"
+    val TAG="trainign_creating"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.training_adding)
         val recycle_view=findViewById<RecyclerView>(R.id.recyclerViewAdding)
+        val adsView=findViewById<AdView>(R.id.adView2)
+
+        MobileAds.initialize(this) {}
+        val adRequest: AdRequest = AdRequest.Builder().build()
+        adsView.loadAd(adRequest)
+        LocalBroadcastManager.getInstance(this).registerReceiver(broadCastReceiver, IntentFilter("custom-message"))
         recycle_view.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
         recycle_view.adapter=Creating_training_adapter(getting_dataset())
 
 
+    }
+    val broadCastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(contxt: Context?, intent: Intent?) {
+
+            val row: String? = intent?.getStringExtra("exce")
+            Log.d(TAG,"The data has been receive $row")
+        }
     }
 
 

@@ -42,11 +42,11 @@
         android:id="@+id/textViewType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="TextView"
-        android:textSize="20sp"
+        android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/textViewNameOfExcercise"
-        app:layout_constraintStart_toEndOf="@+id/textViewNameOfExcercise" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textViewReps"

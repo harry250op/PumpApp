@@ -1,11 +1,14 @@
 package com.example.pumpapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -14,6 +17,7 @@ class Creating_training_adapter(val dataSet: ArrayList<Excercise>) : RecyclerVie
 {
     var time=0
     var reps=0
+    val TAG="adapter_creating"
 
     class ViewHolder(v: View):RecyclerView.ViewHolder(v) {
 
@@ -64,7 +68,10 @@ class Creating_training_adapter(val dataSet: ArrayList<Excercise>) : RecyclerVie
         }
         holder.addExcercise.setOnClickListener()
         {
-            
+        val intent=Intent("custom-message")
+        intent.putExtra("exce","${dataFromDatabase.id}|$reps|$time")
+           Log.d(TAG,"dog")
+            LocalBroadcastManager.getInstance(holder.context).sendBroadcast(intent)
         }
     }
 
