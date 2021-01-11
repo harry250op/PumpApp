@@ -304,6 +304,13 @@ class MainActivity : AppCompatActivity() {
                     training.name = getString(1)
                     training.exce_1 = getString(2)
                     training.exce_2 = getString(3)
+                        training.exce_3 = getString(4)
+                        training.exce_4 = getString(5)
+                        training.exce_5 = getString(6)
+                        training.exce_6 = getString(7)
+                        training.exce_7 = getString(8)
+                        training.exce_8 = getString(9)
+                        training.exce_9 = getString(10)
 
                     Log.d(TAG, "The data has been download  with${training.name}")
                     dataSet.add(training)
@@ -331,6 +338,13 @@ class MainActivity : AppCompatActivity() {
         user.put("name","Monday" )
         user.put("exce_1", "1|3|90")
         user.put("exce_2","3|2|60")
+        user.put("exce_3","")
+        user.put("exce_4","")
+        user.put("exce_5","")
+        user.put("exce_6","")
+        user.put("exce_7","")
+        user.put("exce_8","")
+        user.put("exce_9","")
 
 
         databaseTraining.insert(

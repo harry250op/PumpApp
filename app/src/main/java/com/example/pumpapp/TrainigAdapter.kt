@@ -14,10 +14,16 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class TrainingData{
-    var name: String = ""
+    lateinit var name: String
     var exce_1: String = ""
     var exce_2: String = ""
     var exce_3: String = ""
+    var exce_4:String=""
+    var exce_5: String = ""
+    var exce_6: String = ""
+    var exce_7: String = ""
+    var exce_8: String = ""
+    var exce_9: String = ""
 }
 
 
@@ -64,9 +70,33 @@ class TrainigAdapter(private val dataSet:ArrayList<TrainingData>): RecyclerView.
             {
                 dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2
             }
-            else
+            else if(dataSet[position].exce_4=="")
             {
                 dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3
+            }
+            else if(dataSet[position].exce_5=="")
+            {
+                dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3+"!"+dataSet[position].exce_4
+            }
+            else if(dataSet[position].exce_6=="")
+            {
+                dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3+"!"+dataSet[position].exce_4+"!"+dataSet[position].exce_5
+            }
+            else if(dataSet[position].exce_7=="")
+            {
+                dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3+"!"+dataSet[position].exce_4+"!"+dataSet[position].exce_5+"!"+dataSet[position].exce_6
+            }
+            else if(dataSet[position].exce_8=="")
+            {
+                dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3+"!"+dataSet[position].exce_4+"!"+dataSet[position].exce_5+"!"+dataSet[position].exce_6+"!"+dataSet[position].exce_7
+            }
+            else if(dataSet[position].exce_9=="")
+            {
+                dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3+"!"+dataSet[position].exce_4+"!"+dataSet[position].exce_5+"!"+dataSet[position].exce_6+"!"+dataSet[position].exce_7+"!"+dataSet[position].exce_8
+            }
+            else
+            {
+                dataInString=dataSet[position].exce_1+"!"+dataSet[position].exce_2+"!"+dataSet[position].exce_3+"!"+dataSet[position].exce_4+"!"+dataSet[position].exce_5+"!"+dataSet[position].exce_6+"!"+dataSet[position].exce_7+"!"+dataSet[position].exce_8+"!"+dataSet[position].exce_9
             }
 
 

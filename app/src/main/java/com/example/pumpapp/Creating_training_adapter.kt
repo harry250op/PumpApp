@@ -48,7 +48,7 @@ class Creating_training_adapter(private val dataSet: ArrayList<Excercise>) : Rec
         val dataFromDatabase:Excercise=dataSet[position]
         holder.nameExcercise.text = dataFromDatabase.name_of_excercise
         holder.typeExcercise.text=dataFromDatabase.type_of_excercise
-        holder.setIsRecyclable(false)
+        holder.setIsRecyclable(true)
         holder.plusReps.setOnClickListener()
         {
             reps+=1

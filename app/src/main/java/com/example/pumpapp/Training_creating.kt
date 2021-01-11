@@ -106,6 +106,10 @@ class Training_creating : AppCompatActivity() {
         {   Log.d(TAG,"test ${listOfExce[i-1]}")
             user.put("exce_$i",listOfExce[i-1])
         }
+        for(i in rangeFor+1..9)
+        {
+            user.put("exce_$i","")
+        }
         databaseTraining.insert("exce",null,user)
         databaseTraining.close()
     }
