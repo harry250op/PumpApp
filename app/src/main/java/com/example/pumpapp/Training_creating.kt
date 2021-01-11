@@ -26,15 +26,16 @@ class Excercise()
 
 
 class Training_creating : AppCompatActivity() {
-    val TAG="trainign_creating"
+    val TAG="training_creating"
     var listOfExce=ArrayList<String>()
+    lateinit var textViewName:EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.training_adding)
         val recyclerView=findViewById<RecyclerView>(R.id.recyclerViewAdding)
         val adsView=findViewById<AdView>(R.id.adView2)
         val saveButton:Button=findViewById(R.id.ButtonSaving)
-        val textViewName:EditText=findViewById(R.id.editTextNameForTraining)
+        textViewName=findViewById(R.id.editTextNameForTraining)
 
         MobileAds.initialize(this) {}
         val adRequest: AdRequest = AdRequest.Builder().build()
@@ -97,12 +98,15 @@ class Training_creating : AppCompatActivity() {
     private fun addingToDatabase()
     {val databaseTraining=baseContext.openOrCreateDatabase("training", Context.MODE_PRIVATE,null)
         val user = ContentValues()
+        //Log.d(TAG,"test ${textViewName.text.toString()}")
         user.put("name",textViewName.text.toString())
-        for( i in 0..listOfExce.size)
-        {
-            user.put("exce_$i",listOfExce[i])
+        val rangeFor=listOfExce.size
+        Log.d(TAG, rangeFor.toString())
+        for( i in 1..rangeFor)
+        {   Log.d(TAG,"test ${listOfExce[i-1]}")
+            user.put("exce_$i",listOfExce[i-1])
         }
-        databaseTraining.insert("training",null,user)
+        databaseTraining.insert("exce",null,user)
         databaseTraining.close()
     }
 }

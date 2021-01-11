@@ -299,6 +299,7 @@ class MainActivity : AppCompatActivity() {
         cursor.use {
             if (it.moveToFirst()) {
                 with(cursor) {
+                    do {
                     val training = TrainingData()
                     training.name = getString(1)
                     training.exce_1 = getString(2)
@@ -306,6 +307,7 @@ class MainActivity : AppCompatActivity() {
 
                     Log.d(TAG, "The data has been download  with${training.name}")
                     dataSet.add(training)
+                    }while(it.moveToNext())
                 }
             }
 
@@ -339,7 +341,7 @@ class MainActivity : AppCompatActivity() {
         databaseTraining.close()
         Log.d(TAG,"The database for training has been created")
     }
-    fun excercies_done_database_creating()
+    private fun excercies_done_database_creating()
     {
         Log.d(TAG,"Creating database for done excercises")
         val databaseExcerciseDone=baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE,null)
