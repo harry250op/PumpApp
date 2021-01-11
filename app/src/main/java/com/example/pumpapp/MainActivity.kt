@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import kotlinx.android.synthetic.main.activity_getting_data_user.*
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -23,11 +22,13 @@ class MainActivity : AppCompatActivity() {
     var userName:String=""
     lateinit var textViewName: TextView
     lateinit var buttonAddTraining: Button
+    lateinit var listOfTraining:ArrayList<TrainingData>
+    lateinit var recycle_view:RecyclerView
     @SuppressLint("Recycle", "SetTextI18n", "WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val recycle_view=findViewById<RecyclerView>(R.id.list_recycle_view)
+        recycle_view=findViewById<RecyclerView>(R.id.list_recycle_view)
         val adsView=findViewById<AdView>(R.id.adView)
         textViewName=findViewById<TextView>(R.id.textViewHello)
         buttonAddTraining=findViewById(R.id.Button_adding)
@@ -75,7 +76,8 @@ class MainActivity : AppCompatActivity() {
         textViewName.text = "Hello $userName"
 
         recycle_view.layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        recycle_view.adapter=TrainigAdapter(training_database_getting())
+        listOfTraining=training_database_getting()
+        recycle_view.adapter=TrainigAdapter(listOfTraining)
 
 
 
@@ -93,6 +95,9 @@ class MainActivity : AppCompatActivity() {
     @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        Log.d(TAG,"iT WIRJS")
+        listOfTraining=training_database_getting()
+        recycle_view.adapter=TrainigAdapter(listOfTraining)
         if (requestCode == 1) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
                 Log.d(TAG,"The user has sent the data")
@@ -100,9 +105,11 @@ class MainActivity : AppCompatActivity() {
                 textViewName.text="Hello $returnedResult"
 
 
-
             }
         }
+
+
+
 
     }
 
@@ -291,7 +298,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun training_database_getting():ArrayList<TrainingData>
+    private fun training_database_getting(): ArrayList<TrainingData>
     {
         val databaseTraining=baseContext.openOrCreateDatabase("training", Context.MODE_PRIVATE,null)
         val cursor:Cursor=databaseTraining.rawQuery("SELECT * from exce ",null)

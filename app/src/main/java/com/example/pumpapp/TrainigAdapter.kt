@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -28,7 +27,7 @@ class TrainingData{
 
 
 
-class TrainigAdapter(private val dataSet:ArrayList<TrainingData>): RecyclerView.Adapter<TrainigAdapter.ViewHolder>()
+class TrainigAdapter(private val dataSet: ArrayList<TrainingData>): RecyclerView.Adapter<TrainigAdapter.ViewHolder>()
 {
     var TAG="trainingAdapter"
 
