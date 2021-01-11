@@ -320,7 +320,8 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG,"Creating database for trainings")
         val databaseTraining=baseContext.openOrCreateDatabase("training", Context.MODE_PRIVATE,null)
         //format in database id_excercise|reps|break
-        val sqlcreatingtable1="CREATE TABLE exce(_id INTEGER PRIMARY KEY NOT NULL, name TEXT,exce_1 TEXT,exce_2 TEXT,exce_3 TEXT)"
+        val sqlcreatingtable1="CREATE TABLE exce(_id INTEGER PRIMARY KEY NOT NULL, name TEXT,exce_1 TEXT,exce_2 TEXT,exce_3 TEXT,exce_4 TEXT," +
+                "exce_5 TEXT,exce_6 TEXT, exce_7 text,exce_8 TEXT,exce_9 TEXT)"
         databaseTraining?.execSQL(sqlcreatingtable1)
 
         val user = ContentValues()

@@ -16,9 +16,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Creating_training_adapter(val dataSet: ArrayList<Excercise>) : RecyclerView.Adapter<Creating_training_adapter.ViewHolder>()
 {
-    var time=0
+    var time=30
     var reps=0
     val TAG="adapter_creating"
+    var iterator=0
 
     class ViewHolder(v: View):RecyclerView.ViewHolder(v) {
 
@@ -77,7 +78,6 @@ class Creating_training_adapter(val dataSet: ArrayList<Excercise>) : RecyclerVie
                 holder.addExcercise.setBackgroundColor(Color.GREEN)
         val intent=Intent("custom-message")
         intent.putExtra("exce","${dataFromDatabase.id}|$reps|$time")
-           Log.d(TAG,"dog")
             LocalBroadcastManager.getInstance(holder.context).sendBroadcast(intent)
         }
     }
