@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-class Creating_training_adapter(private val dataSet: ArrayList<Excercise>) : RecyclerView.Adapter<Creating_training_adapter.ViewHolder>()
+class Creating_training_adapter(private val dataSet:ArrayList<Excercise>) : RecyclerView.Adapter<Creating_training_adapter.ViewHolder>()
 {
     var time=60
     var reps=3

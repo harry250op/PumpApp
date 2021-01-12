@@ -6,6 +6,8 @@ import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 
@@ -28,8 +30,12 @@ class ChartsActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.charts_activity)
+        var recyclerView=findViewById<RecyclerView>(R.id.RecycleView_charts)
         val toAdapter=dataToAdapter()
         Log.d(TAG,"test")
+
+        recyclerView.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        recyclerView.adapter=ChartsAdapter(toAdapter)
     }
 
 
@@ -37,7 +43,7 @@ class ChartsActivity: AppCompatActivity() {
         val databaseTraining=baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE,null)
         val cursor: Cursor =databaseTraining.rawQuery("SELECT * from exce_done ",null)
         val dataSet=ArrayList<RepsDone>()
-        val typeOfDay:SimpleDateFormat= SimpleDateFormat("YYYY MM DD")
+        val typeOfDay:SimpleDateFormat= SimpleDateFormat("YYYY : MM : DD")
         cursor.use {
             if (it.moveToFirst()) {
                 with(cursor) {

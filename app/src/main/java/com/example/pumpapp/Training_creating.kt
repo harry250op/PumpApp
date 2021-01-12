@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -98,7 +97,7 @@ class Training_creating : AppCompatActivity() {
     private fun addingToDatabase()
     {val databaseTraining=baseContext.openOrCreateDatabase("training", Context.MODE_PRIVATE,null)
         val user = ContentValues()
-        //Log.d(TAG,"test ${textViewName.text.toString()}")
+
         user.put("name",textViewName.text.toString())
         val rangeFor=listOfExce.size
         Log.d(TAG, rangeFor.toString())
