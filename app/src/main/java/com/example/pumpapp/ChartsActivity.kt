@@ -11,54 +11,53 @@ import androidx.recyclerview.widget.RecyclerView
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 
-class RepsDone()
-{
-    var id_exce:String=""
-    var name_exce:String=""
-    var time:String=""
-    var weight:Float= 0.0F
+class RepsDone() {
+    var id_exce: String = ""
+    var name_exce: String = ""
+    var time: String = ""
+    var weight: Float = 0.0F
 }
 
-class DayOfExcercise()
-{
-     var day:String=""
-     var list=ArrayList<RepsDone>()
+class DayOfExcercise() {
+    var day: String = ""
+    var list = ArrayList<RepsDone>()
 }
 
-class ChartsActivity: AppCompatActivity() {
-    val TAG="ChartActivity"
+class ChartsActivity : AppCompatActivity() {
+    val TAG = "ChartActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.charts_activity)
-        var recyclerView=findViewById<RecyclerView>(R.id.RecycleView_charts)
-        val toAdapter=dataToAdapter()
-        Log.d(TAG,"test")
+        var recyclerView = findViewById<RecyclerView>(R.id.RecycleView_charts)
+        val toAdapter = dataToAdapter()
+        Log.d(TAG, "test")
 
-        recyclerView.layoutManager= LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        recyclerView.adapter=ChartsAdapter(toAdapter)
+        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        recyclerView.adapter = ChartsAdapter(toAdapter)
     }
 
 
     private fun openDatabase(): ArrayList<RepsDone> {
-        val databaseTraining=baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE,null)
-        val cursor: Cursor =databaseTraining.rawQuery("SELECT * from exce_done ",null)
-        val dataSet=ArrayList<RepsDone>()
-        val typeOfDay:SimpleDateFormat= SimpleDateFormat("YYYY : MM : DD")
+        val databaseTraining =
+            baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE, null)
+        val cursor: Cursor = databaseTraining.rawQuery("SELECT * from exce_done ", null)
+        val dataSet = ArrayList<RepsDone>()
+        val typeOfDay: SimpleDateFormat = SimpleDateFormat("YYYY : MM : DD")
         cursor.use {
             if (it.moveToFirst()) {
                 with(cursor) {
                     do {
                         val training = RepsDone()
-                        training.id_exce=getString(1)
-                        training.weight= getString(2).toFloat()
-                        training.name_exce=getting_name_of_excercise(training.id_exce)
-                        val timestamp=getString(3).toLong()
-                        training.time=typeOfDay.format(timestamp)
+                        training.id_exce = getString(1)
+                        training.weight = getString(2).toFloat()
+                        training.name_exce = getting_name_of_excercise(training.id_exce)
+                        val timestamp = getString(3).toLong()
+                        training.time = typeOfDay.format(timestamp)
 
 
                         Log.d(TAG, "The data has been download  with ${training.time}")
                         dataSet.add(training)
-                    }while(it.moveToNext())
+                    } while (it.moveToNext())
                 }
             }
 
@@ -69,11 +68,11 @@ class ChartsActivity: AppCompatActivity() {
     }
 
     private fun dataToAdapter(): Map<String, List<RepsDone>> {
-        val daysOfExcercise=ArrayList<DayOfExcercise>()
-        val ass=DayOfExcercise()
+        val daysOfExcercise = ArrayList<DayOfExcercise>()
+        val ass = DayOfExcercise()
         daysOfExcercise.add(ass)
-        val database=openDatabase()
-        var score=database.groupBy { it.time }
+        val database = openDatabase()
+        var score = database.groupBy { it.time }
         return score
 
 

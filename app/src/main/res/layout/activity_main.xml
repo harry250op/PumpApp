@@ -35,7 +35,7 @@
         android:id="@+id/Button_adding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="64dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_button"
         android:text="+"

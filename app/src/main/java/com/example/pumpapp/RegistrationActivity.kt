@@ -11,42 +11,41 @@ import android.widget.EditText
 import android.widget.TableRow
 import androidx.appcompat.app.AppCompatActivity
 
-    private const val TAG="registrationActivity"
+private const val TAG = "registrationActivity"
 
 
-class RegistrationActivity: AppCompatActivity()  {
+class RegistrationActivity : AppCompatActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val databaseUser=baseContext.openOrCreateDatabase("user_info", MODE_PRIVATE, null)
+        val databaseUser = baseContext.openOrCreateDatabase("user_info", MODE_PRIVATE, null)
         setContentView(R.layout.activity_getting_data_user)
-        var editName: EditText? =findViewById(R.id.editTextName)
-        val editAge: EditText? =findViewById(R.id.editTextAge)
-        val editWeight: EditText? =findViewById(R.id.editTextNumberWeight)
-        val editHeight: EditText? =findViewById(R.id.editTextNumberHeight)
-        val button:Button=findViewById<Button>(R.id.button1)
-        val checkBoxMen=findViewById<CheckBox>(R.id.checkBoxMale)
-        var checkBoxWomen=findViewById<CheckBox>(R.id.checkBoxFemale)
-        Log.d(TAG,"OnCreate")
+        var editName: EditText? = findViewById(R.id.editTextName)
+        val editAge: EditText? = findViewById(R.id.editTextAge)
+        val editWeight: EditText? = findViewById(R.id.editTextNumberWeight)
+        val editHeight: EditText? = findViewById(R.id.editTextNumberHeight)
+        val button: Button = findViewById<Button>(R.id.button1)
+        val checkBoxMen = findViewById<CheckBox>(R.id.checkBoxMale)
+        var checkBoxWomen = findViewById<CheckBox>(R.id.checkBoxFemale)
+        Log.d(TAG, "OnCreate")
 
 
 
 
 
         button.setOnClickListener {
-            var sex=""
+            var sex = ""
             val user = ContentValues()
             Log.d(TAG, editName.toString())
 
-            if(checkBoxMen.isChecked)
-            {
-                sex="man"
-            }else sex="woman"
-            var tesk=editName?.text.toString()
+            if (checkBoxMen.isChecked) {
+                sex = "man"
+            } else sex = "woman"
+            var tesk = editName?.text.toString()
 
 
             user.put("name", editName?.text.toString())
             user.put("age", (editAge?.text.toString()).toInt())
-            user.put("sex",sex)
+            user.put("sex", sex)
             user.put("weight", (editWeight?.text.toString()).toInt())
             user.put("height", (editHeight?.text.toString()).toInt())
             databaseUser.insert(
@@ -58,12 +57,12 @@ class RegistrationActivity: AppCompatActivity()  {
 
 
             Log.d(TAG, "The data has been added to database")
-            val data=Intent()
+            val data = Intent()
             if (editName != null) {
-                data.data=Uri.parse(editName.text.toString())
+                data.data = Uri.parse(editName.text.toString())
             }
-            Log.d(TAG,"The result is $data")
-            setResult(RESULT_OK,data)
+            Log.d(TAG, "The result is $data")
+            setResult(RESULT_OK, data)
             finish()
 
         }
@@ -71,8 +70,5 @@ class RegistrationActivity: AppCompatActivity()  {
     }
 
 
-
-
-
-    }
+}
 

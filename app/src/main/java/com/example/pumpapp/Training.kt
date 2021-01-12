@@ -35,8 +35,8 @@ class Training : AppCompatActivity() {
     lateinit var textViewWeight: TextView
     lateinit var training: Array<String>
     lateinit var stoper: Stoper
-    var time_begin:Long=0
-    var full_weight= 0.0
+    var time_begin: Long = 0
+    var full_weight = 0.0
     lateinit var textViewTraining: TextView
     lateinit var buttonAddingWeight: Button
     lateinit var buttonAddingReps: Button
@@ -44,8 +44,7 @@ class Training : AppCompatActivity() {
     lateinit var buttonSubtracionReps: Button
     lateinit var buttonNext: Button
     lateinit var buttonYoutube: Button
-    lateinit var databaseExce:SQLiteDatabase
-
+    lateinit var databaseExce: SQLiteDatabase
 
 
     val Tag = "training"
@@ -65,7 +64,7 @@ class Training : AppCompatActivity() {
 
 
         Log.d(Tag, "Dataset has been recieved $training")
-        databaseExce=baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE,null)
+        databaseExce = baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE, null)
 
         textViewName = findViewById(R.id.NameofExcercise)
         textViewReps = findViewById(R.id.Rep)
@@ -127,7 +126,7 @@ class Training : AppCompatActivity() {
         textViewReps.text = "$iterator_reps /${reps.toString()} Reps"
         time = data[2].toInt()
         textViewWeight.text = "${weight.toString()} Kg"
-        stoper=Stoper((time * 1000).toLong(), 1, textViewTraining)
+        stoper = Stoper((time * 1000).toLong(), 1, textViewTraining)
         stoper.start()
         iterator_reps++
         iterator_exce = 0
@@ -138,9 +137,9 @@ class Training : AppCompatActivity() {
     fun update() {
         val user = ContentValues()
         val data: Array<String> = training[iterator_exce].split("|").toTypedArray()
-        user.put("id_exce",data[0].toInt() )
+        user.put("id_exce", data[0].toInt())
         user.put("weight", weight.toString())
-        user.put("time",System.currentTimeMillis().toString())
+        user.put("time", System.currentTimeMillis().toString())
 
         databaseExce.insert(
             "exce_done",
@@ -154,13 +153,12 @@ class Training : AppCompatActivity() {
             iterator_exce++
             if (training.size <= iterator_exce) {
                 //when all exce was done
-                full_weight+=weight
+                full_weight += weight
                 window_alert()
-            }
-            else {
+            } else {
 
                 stoper.cancel()
-                full_weight+=weight
+                full_weight += weight
 
                 val data: Array<String> = training[iterator_exce].split("|").toTypedArray()
                 name_of_excercise = getting_name_of_excercise(data[0])
@@ -179,7 +177,7 @@ class Training : AppCompatActivity() {
 
         } else {
             //when rep was done
-            full_weight+=weight
+            full_weight += weight
             stoper.cancel()
             iterator_reps++
             textViewReps.text = "$iterator_reps /${reps.toString()} Reps"
@@ -222,22 +220,21 @@ class Training : AppCompatActivity() {
     }
 
     @SuppressLint("ResourceType", "SetTextI18n")
-    fun window_alert()
-    {
+    fun window_alert() {
         val time_ending = System.currentTimeMillis()
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.after_workout)
-        val time_wourkout=dialog.findViewById<TextView>(R.id.TextViewTimeWorkout)
-        val weight_wourkout=dialog.findViewById<TextView>(R.id.TextViewWeightWorkout)
-        val calories_wourkout=dialog.findViewById<TextView>(R.id.TextViewCaloriesWorkout)
-        val button_to_menu=dialog.findViewById<Button>(R.id.Button_return_to_menu)
-        weight_wourkout.text="${full_weight.toString()} kg"
-        time_wourkout.text= changing_time(time_ending-time_begin)
-        calories_wourkout.text="${((time_ending-time_begin)/7500)} kcal"
+        val time_wourkout = dialog.findViewById<TextView>(R.id.TextViewTimeWorkout)
+        val weight_wourkout = dialog.findViewById<TextView>(R.id.TextViewWeightWorkout)
+        val calories_wourkout = dialog.findViewById<TextView>(R.id.TextViewCaloriesWorkout)
+        val button_to_menu = dialog.findViewById<Button>(R.id.Button_return_to_menu)
+        weight_wourkout.text = "${full_weight.toString()} kg"
+        time_wourkout.text = changing_time(time_ending - time_begin)
+        calories_wourkout.text = "${((time_ending - time_begin) / 7500)} kcal"
 
-        button_to_menu.setOnClickListener{
+        button_to_menu.setOnClickListener {
             databaseExce.close()
             setResult(RESULT_OK)
             finish()
@@ -247,15 +244,13 @@ class Training : AppCompatActivity() {
         dialog.show()
 
 
-
     }
-    fun changing_time(time:Long): String {
-        var minutes=time/60000
-        var seconds=(time/1000)%60
+
+    fun changing_time(time: Long): String {
+        var minutes = time / 60000
+        var seconds = (time / 1000) % 60
         return "${minutes.toString()} min : ${seconds.toString()} sec"
     }
-
-
 
 
 }
