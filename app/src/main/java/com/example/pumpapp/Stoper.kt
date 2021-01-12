@@ -3,10 +3,12 @@ package com.example.pumpapp;
 import android.annotation.SuppressLint
 import android.os.CountDownTimer;
 import android.widget.TextView;
+import androidx.core.app.NotificationCompat
 
 class Stoper(
     var millisInFuture: Long, var countDownInterval: Long, val textTimer: TextView
 ) : CountDownTimer(millisInFuture, countDownInterval) {
+
     override fun onTick(millisUntilFinished: Long) {
 
 

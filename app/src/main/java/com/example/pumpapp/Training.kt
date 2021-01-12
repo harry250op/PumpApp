@@ -2,18 +2,23 @@ package com.example.pumpapp
 
 import android.annotation.SuppressLint
 import android.app.Dialog
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.NotificationCompat
 import androidx.room.Database
 import com.google.gson.internal.bind.SqlDateTypeAdapter
 
@@ -40,6 +45,7 @@ class Training : AppCompatActivity() {
     lateinit var buttonNext: Button
     lateinit var buttonYoutube: Button
     lateinit var databaseExce:SQLiteDatabase
+
 
 
     val Tag = "training"
@@ -248,6 +254,7 @@ class Training : AppCompatActivity() {
         var seconds=(time/1000)%60
         return "${minutes.toString()} min : ${seconds.toString()} sec"
     }
+
 
 
 

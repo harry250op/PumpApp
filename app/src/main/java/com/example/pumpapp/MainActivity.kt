@@ -32,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         val adsView=findViewById<AdView>(R.id.adView)
         textViewName=findViewById<TextView>(R.id.textViewHello)
         buttonAddTraining=findViewById(R.id.Button_adding)
+        val buttonChart=findViewById<Button>(R.id.Button_Graph)
 
 
 
@@ -86,6 +87,10 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(intent,2)
 
 
+        }
+        buttonChart.setOnClickListener {
+            val intent=Intent(this,ChartsActivity::class.java)
+            startActivityForResult(intent,3)
         }
 
 
