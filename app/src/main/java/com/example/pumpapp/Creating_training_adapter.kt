@@ -75,8 +75,9 @@ class Creating_training_adapter(private val dataSet: ArrayList<Excercise>) :
             holder.plusReps.isClickable = false
             holder.minusReps.isClickable = false
             holder.addExcercise.isClickable = false
+            holder.nameExcercise.text="Added"
 
-            holder.addExcercise.setBackgroundColor(Color.GREEN)
+            //holder.addExcercise.setBackgroundColor(Color.GREEN)
             val intent = Intent("custom-message")
             intent.putExtra("exce", "${dataFromDatabase.id}|$reps|$time")
             time = 60
