@@ -1,10 +1,8 @@
-package com.example.pumpapp
+package com.example.pumpapp.Adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pumpapp.Models.Excercise
+import com.example.pumpapp.R
 
 
 class Creating_training_adapter(private val dataSet: ArrayList<Excercise>) :
@@ -43,7 +43,7 @@ class Creating_training_adapter(private val dataSet: ArrayList<Excercise>) :
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: Creating_training_adapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dataFromDatabase: Excercise = dataSet[position]
         holder.nameExcercise.text = dataFromDatabase.name_of_excercise
         holder.typeExcercise.text = dataFromDatabase.type_of_excercise

@@ -12,6 +12,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pumpapp.Adapters.TrainigAdapter
+import com.example.pumpapp.Models.TrainingData
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
@@ -55,12 +57,12 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             Log.d(TAG, e.toString())
             //database dont exist
-            excercise_database_creating()
-            training_database_creating()
-            excercies_done_database_creating()
-            val sqlcreatingtable1 =
+            excerciseDatabaseCreating()
+            trainingDatabaseCreating()
+            excerciesDoneDatabaseCreating()
+            val sqlCreatingTable1 =
                 "CREATE TABLE user(_id INTEGER PRIMARY KEY NOT NULL, name TEXT,age INTEGER,sex TEXT,weight INTEGER,height INTEGER)"
-            databaseUser?.execSQL(sqlcreatingtable1)
+            databaseUser?.execSQL(sqlCreatingTable1)
             Log.d(TAG, "The database exist but it's empty")
             databaseUser.close()
             val intent = Intent(this, RegistrationActivity::class.java)
@@ -73,13 +75,14 @@ class MainActivity : AppCompatActivity() {
         textViewName.text = "Hello $userName"
 
         recycle_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        listOfTraining = training_database_getting()
+        listOfTraining = trainingDatabaseGetting()
         recycle_view.adapter = TrainigAdapter(listOfTraining)
 
 
 
         buttonAddTraining.setOnClickListener {
             val intent = Intent(this, Training_creating::class.java)
+
             startActivityForResult(intent, 2)
 
 
@@ -97,7 +100,7 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         Log.d(TAG, "iT WIRJS")
-        listOfTraining = training_database_getting()
+        listOfTraining = trainingDatabaseGetting()
         recycle_view.adapter = TrainigAdapter(listOfTraining)
         if (requestCode == 1) {
             if (resultCode == AppCompatActivity.RESULT_OK) {
@@ -112,7 +115,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun excercise_database_creating() {
+    private fun excerciseDatabaseCreating() {
         Log.d(TAG, "Creating database for excercises")
         val databaseExcercise = baseContext.openOrCreateDatabase("exce", Context.MODE_PRIVATE, null)
         val sqlcreatingtable1 =
@@ -297,7 +300,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun training_database_getting(): ArrayList<TrainingData> {
+    private fun trainingDatabaseGetting(): ArrayList<TrainingData> {
         val databaseTraining =
             baseContext.openOrCreateDatabase("training", Context.MODE_PRIVATE, null)
         val cursor: Cursor = databaseTraining.rawQuery("SELECT * from exce ", null)
@@ -330,7 +333,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun training_database_creating() {
+    private fun trainingDatabaseCreating() {
         Log.d(TAG, "Creating database for trainings")
         val databaseTraining =
             baseContext.openOrCreateDatabase("training", Context.MODE_PRIVATE, null)
@@ -363,7 +366,7 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "The database for training has been created")
     }
 
-    private fun excercies_done_database_creating() {
+    private fun excerciesDoneDatabaseCreating() {
         Log.d(TAG, "Creating database for done excercises")
         val databaseExcerciseDone =
             baseContext.openOrCreateDatabase("exce_done", Context.MODE_PRIVATE, null)

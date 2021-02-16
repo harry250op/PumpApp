@@ -1,5 +1,6 @@
-package com.example.pumpapp
+package com.example.pumpapp.Adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,30 +12,32 @@ import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
 import com.anychart.charts.Cartesian
 import com.anychart.enums.Position
-import com.anychart.graphics.vector.Anchor
+import com.example.pumpapp.R
+import com.example.pumpapp.RepsDone
 
 
-class ChartsAdapter(val dataSet: Map<String, List<RepsDone>>) :
+class ChartsAdapter(private val dataSet: Map<String, List<RepsDone>>) :
     RecyclerView.Adapter<ChartsAdapter.ViewHolder>() {
     val TAG = "chartAdapter"
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        var textViewDate = v.findViewById<TextView>(R.id.textViewDay)
-        var textViewVolume = v.findViewById<TextView>(R.id.textViewVolume)
+        var textViewDate: TextView = v.findViewById(R.id.textViewDay)
+        var textViewVolume: TextView = v.findViewById(R.id.textViewVolume)
         var charts = v.findViewById<AnyChartView>(R.id.any_chart_view)
 
 
     }
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ChartsAdapter.ViewHolder {
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.charts_adapter, viewGroup, false)
 
-        return ChartsAdapter.ViewHolder(view)
+        return ViewHolder(view)
     }
 
 
-    override fun onBindViewHolder(holder: ChartsAdapter.ViewHolder, position: Int) {
+    @SuppressLint("SetTextI18n")
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var i = 0
         var cartesian: Cartesian = AnyChart.column()
         for ((key, value) in dataSet) {
@@ -42,7 +45,7 @@ class ChartsAdapter(val dataSet: Map<String, List<RepsDone>>) :
 
                 holder.textViewDate.text = "Date: ${value.get(0).time}"
                 holder.textViewVolume.text = "You lifted: ${countingVolume(value).toString()}"
-                var column = cartesian.column(getting_charts(value))
+                val column = cartesian.column(gettingCharts(value))
                 column.tooltip()
                     .titleFormat("{%X}")
                     .position(Position.CENTER_BOTTOM)
@@ -68,9 +71,9 @@ class ChartsAdapter(val dataSet: Map<String, List<RepsDone>>) :
         return volume
     }
 
-    private fun getting_charts(dateS: List<RepsDone>): ArrayList<DataEntry> {
-        var date = ArrayList<DataEntry>()
-        var mapsOfExce = dateS.groupBy { it.name_exce }
+    private fun gettingCharts(dateS: List<RepsDone>): ArrayList<DataEntry> {
+        val date = ArrayList<DataEntry>()
+        val mapsOfExce = dateS.groupBy { it.name_exce }
         for ((key, value) in mapsOfExce) {
             var weight = 0.0
             for (i in value) {

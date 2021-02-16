@@ -2,14 +2,13 @@ package com.example.pumpapp
 
 import android.content.Context
 import android.database.Cursor
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pumpapp.Adapters.ChartsAdapter
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 
 class RepsDone() {
     var id_exce: String = ""

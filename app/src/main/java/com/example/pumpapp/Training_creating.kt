@@ -10,17 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pumpapp.Adapters.Creating_training_adapter
+import com.example.pumpapp.Models.Excercise
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
-import kotlinx.android.synthetic.main.activity_getting_data_user.*
-import kotlinx.android.synthetic.main.training_adding.*
-
-class Excercise() {
-    var id = ""
-    var name_of_excercise = ""
-    var type_of_excercise = ""
-}
 
 
 class Training_creating : AppCompatActivity() {

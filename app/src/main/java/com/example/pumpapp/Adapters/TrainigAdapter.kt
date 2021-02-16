@@ -1,4 +1,4 @@
-package com.example.pumpapp
+package com.example.pumpapp.Adapters
 
 import android.content.Intent
 import android.util.Log
@@ -8,20 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-
-
-class TrainingData {
-    lateinit var name: String
-    var exce_1: String = ""
-    var exce_2: String = ""
-    var exce_3: String = ""
-    var exce_4: String = ""
-    var exce_5: String = ""
-    var exce_6: String = ""
-    var exce_7: String = ""
-    var exce_8: String = ""
-    var exce_9: String = ""
-}
+import com.example.pumpapp.Models.TrainingData
+import com.example.pumpapp.R
+import com.example.pumpapp.Training
 
 
 class TrainigAdapter(private val dataSet: ArrayList<TrainingData>) :
