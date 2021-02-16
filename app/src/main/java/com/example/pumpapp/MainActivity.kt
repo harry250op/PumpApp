@@ -1,6 +1,8 @@
 package com.example.pumpapp
 
 import android.annotation.SuppressLint
+import android.app.ActionBar
+import android.app.Notification
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
@@ -8,8 +10,10 @@ import android.database.Cursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pumpapp.Adapters.TrainigAdapter
@@ -17,6 +21,7 @@ import com.example.pumpapp.Models.TrainingData
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
@@ -25,17 +30,39 @@ class MainActivity : AppCompatActivity() {
     lateinit var textViewName: TextView
     lateinit var buttonAddTraining: Button
     lateinit var listOfTraining: ArrayList<TrainingData>
-    lateinit var recycle_view: RecyclerView
+    private lateinit var recycle_view: RecyclerView
+    lateinit var toggle:ActionBarDrawerToggle
 
     @SuppressLint("Recycle", "SetTextI18n", "WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recycle_view = findViewById<RecyclerView>(R.id.list_recycle_view)
+
+        toggle= ActionBarDrawerToggle(this,drawerLayout,R.string.open,R.string.close)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        navView.setNavigationItemSelectedListener {
+            when(it.itemId){
+                R.id.miItem1->{
+                    val intent = Intent(this, ChartsActivity::class.java)
+                startActivityForResult(intent, 3) }
+                R.id.miItem2 -> {
+                    val intent = Intent(this, Training_creating::class.java)
+
+                    startActivityForResult(intent, 2)
+                }
+
+                R.id.miItem3 -> print("Clicked item 3")
+            }
+            true
+        }
+
         val adsView = findViewById<AdView>(R.id.adView)
         textViewName = findViewById<TextView>(R.id.textViewHello)
         buttonAddTraining = findViewById(R.id.Button_adding)
-        val buttonChart = findViewById<Button>(R.id.Button_Graph)
+      //  val buttonChart = findViewById<Button>(R.id.Button_Graph)
 
 
         val databaseUser = baseContext.openOrCreateDatabase("user_info", Context.MODE_PRIVATE, null)
@@ -80,21 +107,18 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        buttonAddTraining.setOnClickListener {
-            val intent = Intent(this, Training_creating::class.java)
 
-            startActivityForResult(intent, 2)
-
-
-        }
-        buttonChart.setOnClickListener {
-            val intent = Intent(this, ChartsActivity::class.java)
-            startActivityForResult(intent, 3)
-        }
 
 
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(toggle.onOptionsItemSelected(item))
+        {
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
